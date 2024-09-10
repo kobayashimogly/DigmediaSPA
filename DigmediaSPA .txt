@@ -1,0 +1,49 @@
+ DigmediaでSPA出すためのステップ
+
+ 1　広告IDを作成
+ ⬇︎SPARK 管理ver2
+ https://docs.google.com/spreadsheets/d/1_5eKLVYJEkkv6U8zOXg3XoYAWNPPEu9Fwckev0SBIQY/edit?gid=1450930224#gid=1450930224
+
+ 2　管理画面から新規作成
+ ⬇︎ digmedia管理画面
+ https://digmee.jp/__tool/dashboard
+
+ 3 管理画面設定
+ → LP名に「広告ID」
+ → ”会員登録フォームあり”をオン！　　※紫になればいいです！
+ → ”登録ボタンテキスト”を変更　　例）診断結果を表示
+ → Meta:Titleに「タイトル」　　例）強み診断
+ → ”対象”を「-」から「学生」に変更
+ → ”ステータス”を「下書き」から「公開」
+ ※公開にしないとpreview時にサンクスページが表示されません！
+ 
+ 3 ソース貼り付け
+  3-1　Githubにアクセス
+  3-2　「.html」の拡張子を見つけ「Add files via upload」をクリック
+  ※ソースが日本語表記の場合はWebURL欄の右側「自動翻訳」を確認して”日本語”から”英語”へ変更
+  3-3　　<!-- HTML LPフォーム上 -->から<!-- ここまで LPフォーム上 -->を「HTML LPフォーム上」に貼り付け
+  ※変更に関しては”4”を参照
+  3-4　　<!-- HTML LPフォーム下 -->から<!-- ここまで LPフォーム下 -->を「HTML LPフォーム下」に貼り付け
+  3-5　　/* CSS LP */から/* CSS LPここまで */を「CSS LP」に貼り付け
+  3-6　　<!-- HTML サンクス -->から<!-- ここまで サンクス -->を「HTML サンクス」に貼り付け
+  3-7 　/* CSS サンクス */から/* ここまでCSS サンクス */を「CSS サンクス」に貼り付け
+
+ 4　変更点
+  4-1　必須設定
+   ＾1　”HTML LPフォーム上”編
+   　＾＾1　「⬇︎ここが各メディアのアナリティクス」と「⬇︎ここも変えます」を計測IDを貼り付け　変更場所は”G-〇〇〇〇”
+   　※Digmediaの人はここはスキップ
+   　＾＾2　「ここに広告IDをやる」に広告IDを貼る！
+   　const pcId = '広告ID_pc'; 
+ 　  const spId = '広告ID_sp'; 
+ 　　＾＾3　強み診断以外をやる時は小林に一言声を変えてください！
+
+  4-2　任意
+   ＾1　結果画像変更
+   　＾＾1　「⬇︎画像URLを入れるところ」の”https://s3.ap-northeast-1.amazonaws.com/rea.media.assets/digmedia/${savedResult}.png”を変更
+   　　＾＾＾1　画像作成　キャンバなど
+   　　※各ページにMBTIをつける　例）ENTP　INFPなど　
+   　　＾＾＾2　AWSにアップロードしURLを発行
+   　　⬇︎AWS管理画面
+   　　https://ap-northeast-1.console.aws.amazon.com/s3/buckets/rea.media.assets/?bucketType=general&region=ap-northeast-1&tab=objects#
+   　　＾＾＾3　URLのMBTIの場所に「${savedResult}」にして貼り付けて完了！
